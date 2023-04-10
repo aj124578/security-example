@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.PostUpdate;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -26,6 +25,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String role; // USER, MANAGER, ADMIN
     private Boolean status; // true, false
     
     private LocalDateTime createdAt; // LocalDateTime -> Timestamp
@@ -42,12 +42,13 @@ public class User {
     }
 
     @Builder
-    public User(Long id, String username, String password, String email, Boolean status, LocalDateTime createdAt,
-            LocalDateTime updateAt) {
+    public User(Long id, String username, String password, String email, String role, Boolean status,
+            LocalDateTime createdAt, LocalDateTime updateAt) {
         this.id = id;
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
         this.status = status;
         this.createdAt = createdAt;
         this.updateAt = updateAt;
