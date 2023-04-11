@@ -6,8 +6,10 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import lombok.Getter;
 import shop.mtcoding.securityapp.model.User;
 
+@Getter
 public class MyUserDetails implements UserDetails{
 
     private User user;
@@ -21,7 +23,7 @@ public class MyUserDetails implements UserDetails{
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(()-> user.getRole());
+        authorities.add(()-> "ROLE_" + user.getRole());
         return authorities;
     }
 
